@@ -1,6 +1,6 @@
 # 🌱 Benchmark Logiciels Calcul Serres Maraîchères
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-brightgreen)](https://your-username.github.io/benchmark-serres-maraicheres/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-brightgreen)](https://apesseu.github.io/benchmark-serres-maraicheres/)
 [![Licence](https://img.shields.io/badge/Licence-MIT-blue.svg)](LICENSE)
 [![Dernière mise à jour](https://img.shields.io/badge/Mise%20à%20jour-Juin%202025-orange.svg)]()
 
@@ -16,7 +16,7 @@ Ce benchmark aide à la prise de décision pour :
 
 ## 🔗 **Démo Interactive**
 
-**👉 [Voir le benchmark en direct](https://your-username.github.io/benchmark-serres-maraicheres/)**
+**👉 [Voir le benchmark en direct](https://apesseu.github.io/benchmark-serres-maraicheres/)**
 
 Interface moderne avec :
 - 📊 Tableaux comparatifs interactifs
