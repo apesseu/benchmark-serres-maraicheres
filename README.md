@@ -56,11 +56,11 @@ Interface moderne avec :
 ```
 📁 benchmark-serres-maraicheres/
 ├── 📄 benchmark-serres.html     # Application web interactive
+├── 📄 index.html                # Page d'accueil avec redirection
 ├── 📄 README.md                 # Ce fichier
 ├── 📄 CONTRIBUTING.md           # Guide de contribution
 ├── 📄 LICENSE                   # Licence MIT
-├── 📁 docs/                     # Documentation technique
-└── 📁 sources/                  # Références et liens vérifiés
+└── 📄 .gitignore                # Fichiers à ignorer par Git
 ```
 
 ## 🤝 **Contribution**
@@ -112,7 +112,7 @@ Consultez [CONTRIBUTING.md](CONTRIBUTING.md) pour plus de détails.
 
 - 🐛 **Bugs & Issues** : [GitHub Issues](../../issues)
 - 💬 **Discussions** : [GitHub Discussions](../../discussions)
-- 📧 **Contact Direct** : [Votre email]
+- 📧 **Contact Direct** : avicenne.pesseu@gmail.com
 
 ## 📄 **Licence**
 
