@@ -1,6 +1,6 @@
 # 🤝 Guide de Contribution
 
-Merci de votre intérêt pour améliorer ce benchmark ! Votre expertise du secteur des serres maraîchères est précieuse.
+Merci de votre intérêt pour améliorer ce benchmark !
 
 ## 🎯 **Types de Contributions Recherchées**
 
@@ -11,9 +11,9 @@ Merci de votre intérêt pour améliorer ce benchmark ! Votre expertise du secte
 - 📝 **Amélioration documentation**
 
 ### 🏗️ **Expertise Métier**
-- **Constructeurs de serres** : validation des besoins terrain
+- **Constructeurs de serres** : validation des informations techniques
 - **Bureaux d'études** : précisions techniques sur les logiciels
-- **Maraîchers** : retours d'expérience utilisateur
+- **Maraîchers** : corrections d'informations pratiques
 - **Éditeurs logiciels** : corrections sur vos produits
 
 ## 📋 **Comment Contribuer**
@@ -43,7 +43,7 @@ Fournissez obligatoirement :
 - **Description** en 1-2 phrases
 - **Évaluation** sur les 9 critères
 - **Justification** des scores attribués
-- **Sources** (documentation, tests, retours)
+- **Sources** (documentation officielle)
 
 ### 💰 **Pour les Informations Tarifaires**
 - **Sources publiques** uniquement (pas d'infos confidentielles)
@@ -55,7 +55,7 @@ Fournissez obligatoirement :
 ✅ **Acceptées** :
 - Sites web officiels éditeurs
 - Documentation technique publique
-- Retours d'expérience nommés
+- Tests publics documentés
 - Études de marché publiées
 
 ❌ **Non acceptées** :
@@ -103,11 +103,7 @@ Fournissez obligatoirement :
 - Mention dans le **changelog** des versions
 - **Badge** contributeur sur votre profil GitHub
 
-### 🏆 **Contributeurs Actifs**
-Les contributeurs réguliers peuvent devenir :
-- **Reviewers** pour valider les nouvelles contributions
-- **Maintainers** avec droits d'écriture
-- **Experts conseil** pour les évolutions majeures
+
 
 ## ⚖️ **Code de Conduite**
 
@@ -150,4 +146,4 @@ Les contributeurs réguliers peuvent devenir :
 
 ---
 
-**🙏 Merci de contribuer à faire de ce benchmark une référence du secteur !** 
+**🙏 Merci pour vos contributions !** 

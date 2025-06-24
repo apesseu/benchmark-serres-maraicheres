@@ -27,7 +27,7 @@ Interface moderne avec :
 
 ## 📋 **Contenu de l'Analyse**
 
-### 🔍 **Solutions Analysées** *(liste évolutive)*
+### 🔍 **Solutions Analysées**
 - **CASTA (TNO)** - Calculs serres verre haute technologie
 - **ICAB + Module EN 13031** - Solution FEM française avec module spécialisé
 - **Hortinergy (Agrithermic)** - Calculs énergétiques serres
@@ -65,13 +65,13 @@ Interface moderne avec :
 
 ## 🤝 **Contribution**
 
-**Votre expertise est précieuse !** Vous pouvez contribuer en :
+Vous pouvez contribuer en :
 
 ### 💡 **Suggestions d'Amélioration**
-- **[Créer une Issue](../../issues)** pour signaler des informations obsolètes
+- **[Créer une Issue](../../issues)** pour signaler des erreurs
 - **Proposer** de nouveaux logiciels à analyser
 - **Corriger** des estimations tarifaires
-- **Ajouter** des retours d'expérience terrain
+
 
 ### 📝 **Domaines d'Expertise Recherchés**
 - 🏗️ **Constructeurs de serres** (feedback produits)
