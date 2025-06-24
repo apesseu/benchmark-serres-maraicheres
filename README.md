@@ -1,14 +1,14 @@
-# 🌱 Benchmark Professionnel - Logiciels Calcul Serres Maraîchères
+# 🌱 Benchmark Logiciels Calcul Serres Maraîchères
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-brightgreen)](https://your-username.github.io/benchmark-serres-maraicheres/)
 [![Licence](https://img.shields.io/badge/Licence-MIT-blue.svg)](LICENSE)
 [![Dernière mise à jour](https://img.shields.io/badge/Mise%20à%20jour-Juin%202025-orange.svg)]()
 
-> **Benchmark professionnel des solutions logicielles pour le calcul de structures de serres maraîchères selon la norme NF EN 13031-1**
+> **Benchmark des solutions logicielles pour le calcul de structures de serres maraîchères selon la norme NF EN 13031-1**
 
 ## 🎯 **Objectif**
 
-Ce benchmark professionnel aide à la prise de décision pour :
+Ce benchmark aide à la prise de décision pour :
 - **🏗️ Constructeurs de serres** cherchant des outils de calcul adaptés
 - **📐 Bureaux d'études** spécialisés en structures agricoles  
 - **🌾 Maraîchers** souhaitant comprendre les solutions techniques
