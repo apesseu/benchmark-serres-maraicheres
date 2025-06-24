@@ -94,19 +94,18 @@ Consultez [CONTRIBUTING.md](CONTRIBUTING.md) pour plus de détails.
 - **Sites officiels** des éditeurs logiciels
 - **Documentation technique** des constructeurs
 
-## 🔄 **Roadmap**
+## 🔄 **Évolutions Possibles**
 
-### 🎯 **Version Actuelle (v1.0)**
-- ✅ Analyse comparative complète
-- ✅ Interface web interactive
-- ✅ Documentation méthodologique
+### ✅ **Version Actuelle**
+- Analyse comparative des solutions existantes
+- Interface web responsive
+- Documentation collaborative
 
-### 🚀 **Évolutions Prévues**
-- 📊 Export Excel/PDF optimisé
-- 🔗 API pour intégration externe
-- 📱 Application mobile responsive
-- 🌍 Version anglaise
-- 📈 Métriques d'usage anonymisées
+### 🚀 **Améliorations Envisagées**
+- Export Excel/PDF des tableaux
+- Ajout de nouveaux logiciels
+- Traductions (anglais, néerlandais)
+- Retours d'expérience utilisateurs
 
 ## 📞 **Contact & Support**
 
@@ -123,13 +122,28 @@ Ce projet est sous licence **MIT** - voir [LICENSE](LICENSE) pour plus de détai
 - ✅ Modification et redistribution
 - ✅ Attribution requise
 
+## 🎯 **Conclusion de l'Analyse**
+
+**Pour les fabricants de serres maraîchères :**
+
+L'analyse révèle un **gap significatif** dans l'offre logicielle. Les solutions existantes sont soit :
+- **Inadaptées** (CASTA pour serres verre, logiciels BIM généralistes)
+- **Trop complexes** (formation 2-8 semaines, coûts 8-30k€)
+- **Limitées** (Excel artisanal sans évolutivité)
+
+**Recommandation factuelle :** Pour une PME fabricant <50 serres/an, l'investissement dans un logiciel spécialisé semble **économiquement justifié** si :
+1. Le **coût de développement** reste <30k€ (équivalent 2 ans de licences ICAB)
+2. L'outil **simplifie réellement** le processus actuel
+3. La **responsabilité technique** est bien encadrée
+
+**Option pragmatique :** Développer un **module de pré-calcul** simple avant validation finale par logiciel traditionnel ou BE externe.
+
 ---
 
-## 🌟 **Remerciements**
+## 📚 **Remerciements Sources**
 
-- **Communauté agricole française** pour les retours terrain
-- **Éditeurs logiciels** pour la documentation publique
-- **Organismes de normalisation** (AFNOR, CSTB)
+- **Éditeurs logiciels** pour la documentation publique accessible
+- **Organismes de normalisation** (AFNOR, CSTB) pour les référentiels techniques
 
 ---
 
