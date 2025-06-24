@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benchmark Professionnel - Logiciels Calcul Serres Maraîchères</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            line-height: 1.7;
+            color: #1e293b;
+            transition: all 0.3s ease;
+        }
+        
+        body.dark-mode {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+        
+        .dark-mode .container {
+            background: rgba(30, 41, 59, 0.95);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e293b, #334155, #475569);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.1);
+        }
+        
+        .dark-mode .header {
+            background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
+        }
+        
+        .header h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: -0.02em;
+        }
+        
+        .header .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        .header .meta {
+            font-size: 1rem;
+            opacity: 0.85;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            font-weight: 500;
+        }
+        
+        .dark-mode-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            border-radius: 50px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #1e293b;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+        }
+        
+        .dark-mode-toggle:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+        }
+        
+        .dark-mode .dark-mode-toggle {
+            background: rgba(30, 41, 59, 0.9);
+            color: #e2e8f0;
+            border: 1px solid rgba(71, 85, 105, 0.3);
+        }
+        
+        .dark-mode .dark-mode-toggle:hover {
+            background: rgba(30, 41, 59, 1);
+        }
+        
+        .disclaimer {
+            background: linear-gradient(45deg, #e67e22, #d35400);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-weight: 600;
+            border-bottom: 4px solid #c0392b;
+        }
+        
+        .usage-instructions {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 25px;
+            margin: 0;
+        }
+        
+        .usage-instructions h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .usage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .usage-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .usage-item h4 {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .usage-item p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        .nav-tabs {
+            background: #34495e;
+            padding: 0;
+            display: flex;
+            overflow-x: auto;
+        }
+        
+        .nav-tab {
+            padding: 15px 25px;
+            background: #34495e;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            border-right: 1px solid #2c3e50;
+        }
+        
+        .nav-tab:hover {
+            background: #3498db;
+            transform: translateY(-2px);
+        }
+        
+        .nav-tab.active {
+            background: #2ecc71;
+            box-shadow: inset 0 -4px 0 #27ae60;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 40px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .filters {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .filter-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 200px;
+        }
+        
+        .filter-group label {
+            font-weight: 700;
+            color: #2c3e50;
+            min-width: 80px;
+        }
+        
+        .filter-group select {
+            flex: 1;
+            padding: 10px 15px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            background: white;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-group select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 20px 12px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid #3498db;
+            min-width: 120px;
+        }
+        
+        .comparison-table th.product-name {
+            min-width: 200px;
+            text-align: left;
+        }
+        
+        .comparison-table td {
+            padding: 12px 8px;
+            border-bottom: 1px solid #ecf0f1;
+            border-right: 1px solid #ecf0f1;
+            vertical-align: middle;
+            font-size: 0.85rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .comparison-table td.product-name {
+            text-align: left;
+            font-weight: 700;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            padding: 15px;
+        }
+        
+        .comparison-table tr:hover {
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            transform: scale(1.002);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .status {
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-align: center;
+            display: inline-block;
+            min-width: 70px;
+            cursor: help;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .status:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+        
+        .status.excellent {
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+            color: white;
+        }
+        
+        .status.tres-bon {
+            background: linear-gradient(45deg, #16a085, #1abc9c);
+            color: white;
+        }
+        
+        .status.bon {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+        }
+        
+        .status.moyen {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+            color: white;
+        }
+        
+        .status.faible {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+        }
+        
+        .status.non-adapte {
+            background: linear-gradient(45deg, #7f8c8d, #95a5a6);
+            color: white;
+        }
+        
+        .status.gap {
+            background: linear-gradient(45deg, #9b59b6, #8e44ad);
+            color: white;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        .price {
+            font-weight: 700;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+        }
+        
+        .price.gratuit {
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            color: white;
+        }
+        
+        .price.economique {
+            background: linear-gradient(45deg, #1abc9c, #16a085);
+            color: white;
+        }
+        
+        .price.modere {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+            color: white;
+        }
+        
+        .price.eleve {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+        }
+        
+        .price.tres-eleve {
+            background: linear-gradient(45deg, #8e44ad, #9b59b6);
+            color: white;
+        }
+        
+        .link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        .link:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .recommendation-box {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3);
+        }
+        
+        .recommendation-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+        }
+        
+        .warning-box .feature-card {
+            background: white;
+            color: #2c3e50;
+        }
+        
+        .warning-box .feature-card h4 {
+            color: #2c3e50;
+        }
+        
+        .legend {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .legend h4 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 5px 10px 5px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .warning-box .feature-card {
+            background: white;
+            color: #2c3e50;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-left: 4px solid #e74c3c;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .feature-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .filter-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .filter-group {
+                min-width: 100%;
+            }
+            
+            .comparison-table {
+                font-size: 0.8rem;
+            }
+            
+            .comparison-table th,
+            .comparison-table td {
+                padding: 8px 4px;
+                min-width: 80px;
+            }
+        }
+        
+        .tooltip {
+            position: relative;
+            cursor: help;
+        }
+        
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2c3e50;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .tooltip:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌱 Benchmark Professionnel Logiciels Calcul Serres Maraîchères</h1>
+            <div class="subtitle">Analyse comparative complète • Norme NF EN 13031-1 • Marché français</div>
+            <div class="meta">
+                <span>📊 Solutions analysées (liste évolutive)</span>
+                <span>🔍 45+ critères comparés</span>
+                <span>📅 Mise à jour : Juin 2025</span>
+                <span>🇫🇷 Focus marché français</span>
+            </div>
+        </div>
+
+        <div class="disclaimer">
+            ⚠️ <strong>AVERTISSEMENT TARIFS :</strong> Les coûts indiqués sont des estimations sectorielles à titre indicatif uniquement. 
+            Pour des tarifs précis, contactez directement les éditeurs. Analyse basée sur sources publiques et retours terrain.
+        </div>
+
+
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('overview')">🎯 Vue d'ensemble</button>
+            <button class="nav-tab" onclick="showTab('technical')">⚙️ Analyse technique</button>
+            <button class="nav-tab" onclick="showTab('commercial')">💼 Aspects commerciaux</button>
+            <button class="nav-tab" onclick="showTab('recommendations')">💡 Pourquoi développer</button>
+            <button class="nav-tab" onclick="showTab('sources')">📚 Sources vérifiées</button>
+        </div>
+
+        <div id="overview" class="tab-content active">
+            <div class="filters">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label>Cible :</label>
+                        <select id="targetFilter" onchange="filterTable()">
+                            <option value="all">Toutes</option>
+                            <option value="maraicher">Maraîchers</option>
+                            <option value="constructeur">Constructeurs</option>
+                            <option value="be">Bureaux d'études</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Prix :</label>
+                        <select id="priceFilter" onchange="filterTable()">
+                            <option value="all">Tous</option>
+                            <option value="gratuit">Gratuit</option>
+                            <option value="economique">Économique</option>
+                            <option value="modere">Modéré</option>
+                            <option value="eleve">Élevé</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <table class="comparison-table" id="comparisonTable">
+                <thead>
+                    <tr>
+                        <th class="product-name">Solution</th>
+                        <th class="tooltip" data-tooltip="Adapté aux tunnels maraîchers plastique/polycarbonate">Tunnels Maraîchers</th>
+                        <th class="tooltip" data-tooltip="Intégration complète norme NF EN 13031-1">Norme EN 13031</th>
+                        <th class="tooltip" data-tooltip="Calculs structures acier galvanisé tubes minces">Structures Acier</th>
+                        <th class="tooltip" data-tooltip="Interface simple pour non-experts">Simplicité Interface</th>
+                        <th class="tooltip" data-tooltip="Coût acquisition estimé">Coût</th>
+                        <th class="tooltip" data-tooltip="Disponibilité marché français">Disponibilité FR</th>
+                        <th class="tooltip" data-tooltip="Support technique">Support</th>
+                        <th class="tooltip" data-tooltip="Évolutivité solution">Évolutivité</th>
+                        <th class="tooltip" data-tooltip="Documentation qualité">Documentation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-target="be" data-price="tres-eleve">
+                        <td class="product-name">
+                            <strong>CASTA (TNO)</strong><br>
+                            <small>Calcul serres verre haute-technologie type Venlo. Spécialisé grands projets industriels hollandais.</small><br>
+                            <a href="https://www.tno.nl/en/sustainable/safe-sustainable-living-environment/greenhouse-horticulture/casta-greenhouse-design-programme/" class="link" target="_blank">🔗 Site officiel</a>
+                        </td>
+                        <td><span class="status non-adapte">NON ADAPTÉ</span><br><small>Conçu pour serres verre</small></td>
+                        <td><span class="status excellent">EXCELLENT</span></td>
+                        <td><span class="status faible">FAIBLE</span></td>
+                        <td><span class="status moyen">MOYEN</span></td>
+                        <td><span class="price tres-eleve">TRÈS ÉLEVÉ</span></td>
+                        <td><span class="status moyen">MOYEN</span></td>
+                        <td><span class="status tres-bon">TRÈS BON</span></td>
+                        <td><span class="status bon">BON</span></td>
+                        <td><span class="status tres-bon">TRÈS BON</span></td>
+                    </tr>
+                    <tr data-target="be" data-price="eleve">
+                        <td class="product-name">
+                            <strong>ICAB + Module EN 13031</strong><br>
+                            <small>Logiciel FEM français avec module spécialisé serres. Seule solution avec calculs EN 13031 intégrés.</small><br>
+                            <a href="https://www.icab.fr/" class="link" target="_blank">🔗 Site officiel</a>
+                        </td>
+                        <td><span class="status tres-bon">TRÈS BON</span><br><small>Module dédié tunnels</small></td>
+                        <td><span class="status excellent">EXCELLENT</span></td>
+                        <td><span class="status excellent">EXCELLENT</span></td>
+                        <td><span class="status moyen">MOYEN</span></td>
+                        <td><span class="price eleve">ÉLEVÉ</span></td>
+                        <td><span class="status tres-bon">TRÈS BON</span></td>
+                        <td><span class="status tres-bon">TRÈS BON</span></td>
+                        <td><span class="status bon">BON</span></td>
+                        <td><span class="status bon">BON</span></td>
+                    </tr>
+                    <tr data-target="be" data-price="modere">
+                        <td class="product-name">
+                            <strong>Hortinergy (Agrithermic)</strong><br>
+                            <small>Calculs énergétiques serres (chauffage, climatisation). N'effectue pas de calculs structuraux.</small><br>
+                            <a href="https://www.hortinergy.com/" class="link" target="_blank">🔗 Site officiel</a>
+                        </td>
+                        <td><span class="status moyen">MOYEN</span><br><small>Énergétique uniquement</small></td>
+                        <td><span class="status faible">FAIBLE</span></td>
+                        <td><span class="status bon">BON</span></td>
+                        <td><span class="status tres-bon">TRÈS BON</span></td>
+                        <td><span class="price modere">MODÉRÉ</span></td>
+                        <td><span class="status excellent">EXCELLENT</span></td>
+                        <td><span class="status bon">BON</span></td>
+                        <td><span class="status tres-bon">TRÈS BON</span></td>
+                        <td><span class="status bon">BON</span></td>
+                    </tr>
+                    <tr data-target="be" data-price="eleve">
+                        <td class="product-name">
+                            <strong>ROBOT Structural Analysis</strong><br>
+                            <small>Logiciel BIM/FEM généraliste pour bâtiments complexes. Aucun module spécialisé serres.</small><br>
+                            <a href="https://www.autodesk.com/products/robot-structural-analysis/" class="link" target="_blank">🔗 Site officiel</a>
+                        </td>
+                        <td><span class="status faible">FAIBLE</span><br><small>Généraliste BIM</small></td>
+                        <td><span class="status bon">BON</span></td>
+                        <td><span class="status bon">BON</span></td>
+                        <td><span class="status faible">FAIBLE</span></td>
+                        <td><span class="price eleve">ÉLEVÉ</span></td>
+                        <td><span class="status bon">BON</span></td>
+                        <td><span class="status excellent">EXCELLENT</span></td>
+                        <td><span class="status excellent">EXCELLENT</span></td>
+                        <td><span class="status excellent">EXCELLENT</span></td>
+                    </tr>
+                    <tr data-target="be" data-price="eleve">
+                        <td class="product-name">
+                            <strong>TEKLA Structures</strong><br>
+                            <small>Modélisation BIM construction métallique. Utilisé pour grands projets complexes.</small><br>
+                            <a href="https://www.trimble.com/en/products/tekla/structures" class="link" target="_blank">🔗 Site officiel</a>
+                        </td>
+                        <td><span class="status faible">FAIBLE</span><br><small>BIM construction</small></td>
+                        <td><span class="status bon">BON</span></td>
+                        <td><span class="status tres-bon">TRÈS BON</span></td>
+                        <td><span class="status faible">FAIBLE</span></td>
+                        <td><span class="price eleve">ÉLEVÉ</span></td>
+                        <td><span class="status bon">BON</span></td>
+                        <td><span class="status excellent">EXCELLENT</span></td>
+                        <td><span class="status excellent">EXCELLENT</span></td>
+                        <td><span class="status excellent">EXCELLENT</span></td>
+                    </tr>
+                    <tr data-target="be" data-price="eleve">
+                        <td class="product-name">
+                            <strong>SCIA Engineer</strong><br>
+                            <small>Logiciel FEM européen pour calculs structures complexes. Forte conformité Eurocodes.</small><br>
+                            <a href="https://www.scia.net/" class="link" target="_blank">🔗 Site officiel</a>
+                        </td>
+                        <td><span class="status faible">FAIBLE</span><br><small>FEM généraliste</small></td>
+                        <td><span class="status tres-bon">TRÈS BON</span></td>
+                        <td><span class="status tres-bon">TRÈS BON</span></td>
+                        <td><span class="status moyen">MOYEN</span></td>
+                        <td><span class="price eleve">ÉLEVÉ</span></td>
+                        <td><span class="status tres-bon">TRÈS BON</span></td>
+                        <td><span class="status excellent">EXCELLENT</span></td>
+                        <td><span class="status bon">BON</span></td>
+                        <td><span class="status tres-bon">TRÈS BON</span></td>
+                    </tr>
+                    <tr data-target="be" data-price="eleve">
+                        <td class="product-name">
+                            <strong>Graitec Advance Design</strong><br>
+                            <small>Suite FEM/BIM française pour ingénierie. Modules béton, acier, bois intégrés.</small><br>
+                            <a href="https://graitec.com/advance-design/" class="link" target="_blank">🔗 Site officiel</a>
+                        </td>
+                        <td><span class="status faible">FAIBLE</span><br><small>FEM généraliste</small></td>
+                        <td><span class="status tres-bon">TRÈS BON</span></td>
+                        <td><span class="status tres-bon">TRÈS BON</span></td>
+                        <td><span class="status moyen">MOYEN</span></td>
+                        <td><span class="price eleve">ÉLEVÉ</span></td>
+                        <td><span class="status excellent">EXCELLENT</span></td>
+                        <td><span class="status tres-bon">TRÈS BON</span></td>
+                        <td><span class="status bon">BON</span></td>
+                        <td><span class="status bon">BON</span></td>
+                    </tr>
+                    <tr data-target="constructeur" data-price="gratuit">
+                        <td class="product-name">
+                            <strong>Solutions Excel Artisanales</strong><br>
+                            <small>Feuilles de calcul développées en interne par bureaux d'études. Solution actuelle majoritaire.</small><br>
+                            <span class="link">📊 Développement interne</span>
+                        </td>
+                        <td><span class="status bon">BON</span><br><small>Adapté au besoin</small></td>
+                        <td><span class="status moyen">MOYEN</span></td>
+                        <td><span class="status tres-bon">TRÈS BON</span></td>
+                        <td><span class="status tres-bon">TRÈS BON</span></td>
+                        <td><span class="price gratuit">GRATUIT</span></td>
+                        <td><span class="status excellent">EXCELLENT</span></td>
+                        <td><span class="status faible">FAIBLE</span></td>
+                        <td><span class="status faible">FAIBLE</span></td>
+                        <td><span class="status faible">FAIBLE</span></td>
+                    </tr>
+                    <tr data-target="maraicher" data-price="gratuit" style="background: linear-gradient(135deg, #e8f5e8, #d4edda);">
+                        <td class="product-name">
+                            <strong>Solution Sur Mesure (Python/R)</strong><br>
+                            <small>Développement spécialisé libre</small><br>
+                            <span class="link">🐍 Open Source / Propriétaire</span>
+                        </td>
+                        <td><span class="status gap">PARFAIT</span></td>
+                        <td><span class="status gap">À IMPLÉMENTER</span></td>
+                        <td><span class="status gap">OPTIMISÉ</span></td>
+                        <td><span class="status gap">INTERFACE DÉDIÉE</span></td>
+                        <td><span class="price gratuit">COÛT DÉVELOPPEMENT</span></td>
+                        <td><span class="status gap">UNIVERSELLE</span></td>
+                        <td><span class="status gap">MAÎTRISÉ</span></td>
+                        <td><span class="status gap">INFINIE</span></td>
+                        <td><span class="status gap">PERSONNALISÉE</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="technical" class="tab-content">
+            <div class="section">
+                <h2>⚙️ Analyse Technique Détaillée</h2>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th class="product-name">Solution</th>
+                            <th>Calculs Neige/Vent</th>
+                            <th>Flambement</th>
+                            <th>Charges Exploitation</th>
+                            <th>Export CAO</th>
+                            <th>API/Personnalisation</th>
+                            <th>Bases Données Profils</th>
+                            <th>Calculs Non-Linéaires</th>
+                            <th>Optimisation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="product-name"><strong>CASTA (TNO)</strong></td>
+                            <td><span class="status excellent">EXCELLENT</span></td>
+                            <td><span class="status tres-bon">TRÈS BON</span></td>
+                            <td><span class="status bon">BON</span></td>
+                            <td><span class="status bon">BON</span></td>
+                            <td><span class="status faible">FAIBLE</span></td>
+                            <td><span class="status tres-bon">TRÈS BON</span></td>
+                            <td><span class="status moyen">MOYEN</span></td>
+                            <td><span class="status bon">BON</span></td>
+                        </tr>
+                        <tr>
+                            <td class="product-name"><strong>ICAB + Module EN 13031</strong></td>
+                            <td><span class="status excellent">EXCELLENT</span></td>
+                            <td><span class="status excellent">EXCELLENT</span></td>
+                            <td><span class="status excellent">EXCELLENT</span></td>
+                            <td><span class="status tres-bon">TRÈS BON</span></td>
+                            <td><span class="status bon">BON</span></td>
+                            <td><span class="status tres-bon">TRÈS BON</span></td>
+                            <td><span class="status tres-bon">TRÈS BON</span></td>
+                            <td><span class="status tres-bon">TRÈS BON</span></td>
+                        </tr>
+                        <tr>
+                            <td class="product-name"><strong>Hortinergy</strong></td>
+                            <td><span class="status non-adapte">HORS SCOPE</span></td>
+                            <td><span class="status non-adapte">HORS SCOPE</span></td>
+                            <td><span class="status non-adapte">HORS SCOPE</span></td>
+                            <td><span class="status faible">FAIBLE</span></td>
+                            <td><span class="status moyen">MOYEN</span></td>
+                            <td><span class="status non-adapte">HORS SCOPE</span></td>
+                            <td><span class="status non-adapte">HORS SCOPE</span></td>
+                            <td><span class="status tres-bon">TRÈS BON</span></td>
+                        </tr>
+                        <tr>
+                            <td class="product-name"><strong>Logiciels Généralistes</strong></td>
+                            <td><span class="status tres-bon">TRÈS BON</span></td>
+                            <td><span class="status excellent">EXCELLENT</span></td>
+                            <td><span class="status tres-bon">TRÈS BON</span></td>
+                            <td><span class="status excellent">EXCELLENT</span></td>
+                            <td><span class="status tres-bon">TRÈS BON</span></td>
+                            <td><span class="status excellent">EXCELLENT</span></td>
+                            <td><span class="status excellent">EXCELLENT</span></td>
+                            <td><span class="status bon">BON</span></td>
+                        </tr>
+                        <tr>
+                            <td class="product-name"><strong>Excel Artisanal</strong></td>
+                            <td><span class="status moyen">MOYEN</span></td>
+                            <td><span class="status moyen">MOYEN</span></td>
+                            <td><span class="status bon">BON</span></td>
+                            <td><span class="status faible">FAIBLE</span></td>
+                            <td><span class="status tres-bon">TRÈS BON</span></td>
+                            <td><span class="status faible">FAIBLE</span></td>
+                            <td><span class="status faible">FAIBLE</span></td>
+                            <td><span class="status faible">FAIBLE</span></td>
+                        </tr>
+                        <tr style="background: linear-gradient(135deg, #e8f5e8, #d4edda);">
+                            <td class="product-name"><strong>Solution Sur Mesure</strong></td>
+                            <td><span class="status gap">À IMPLÉMENTER</span></td>
+                            <td><span class="status gap">À IMPLÉMENTER</span></td>
+                            <td><span class="status gap">À IMPLÉMENTER</span></td>
+                            <td><span class="status gap">NATIF</span></td>
+                            <td><span class="status gap">TOTALE</span></td>
+                            <td><span class="status gap">PERSONNALISÉES</span></td>
+                            <td><span class="status gap">LIBRARIES SCIPY</span></td>
+                            <td><span class="status gap">ALGORITHMES ML</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="commercial" class="tab-content">
+            <div class="section">
+                <h2>💼 Analyse Commerciale</h2>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th class="product-name">Solution</th>
+                            <th>Coût Initial Estimé</th>
+                            <th>Coût Annuel Estimé</th>
+                            <th>Formation Requise</th>
+                            <th>ROI Estimé</th>
+                            <th>Type Licence</th>
+                            <th>Maintenance</th>
+                            <th>Mises à Jour</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="product-name"><strong>CASTA (TNO)</strong></td>
+                            <td><span class="price tres-eleve">Estimation : 15-30k€</span></td>
+                            <td><span class="price eleve">Estimation : 3-5k€</span></td>
+                            <td><span class="status moyen">1-2 semaines</span></td>
+                            <td><span class="status faible">FAIBLE</span></td>
+                            <td>Propriétaire restrictive</td>
+                            <td><span class="status tres-bon">INCLUSE</span></td>
+                            <td><span class="status bon">RÉGULIÈRES</span></td>
+                        </tr>
+                        <tr>
+                            <td class="product-name"><strong>ICAB</strong></td>
+                            <td><span class="price eleve">Estimation : 8-15k€</span></td>
+                            <td><span class="price modere">Estimation : 2-3k€</span></td>
+                            <td><span class="status faible">2-4 semaines</span></td>
+                            <td><span class="status tres-bon">TRÈS BON</span></td>
+                            <td>Commerciale standard</td>
+                            <td><span class="status tres-bon">INCLUSE</span></td>
+                            <td><span class="status tres-bon">FRÉQUENTES</span></td>
+                        </tr>
+                        <tr>
+                            <td class="product-name"><strong>Hortinergy</strong></td>
+                            <td><span class="price modere">Estimation : 2-5k€</span></td>
+                            <td><span class="price economique">Estimation : 500-1k€</span></td>
+                            <td><span class="status tres-bon">2-3 jours</span></td>
+                            <td><span class="status bon">BON</span></td>
+                            <td>SaaS abonnement</td>
+                            <td><span class="status tres-bon">INCLUSE</span></td>
+                            <td><span class="status excellent">CONTINUES</span></td>
+                        </tr>
+                        <tr>
+                            <td class="product-name"><strong>Logiciels Généralistes</strong></td>
+                            <td><span class="price tres-eleve">Estimation : 10-25k€</span></td>
+                            <td><span class="price eleve">Estimation : 2-5k€</span></td>
+                            <td><span class="status faible">4-8 semaines</span></td>
+                            <td><span class="status moyen">MOYEN</span></td>
+                            <td>Entreprise complexe</td>
+                            <td><span class="status tres-bon">PREMIUM</span></td>
+                            <td><span class="status tres-bon">RÉGULIÈRES</span></td>
+                        </tr>
+                        <tr>
+                            <td class="product-name"><strong>Excel Artisanal</strong></td>
+                            <td><span class="price gratuit">0€</span></td>
+                            <td><span class="price gratuit">0€</span></td>
+                            <td><span class="status excellent">Immédiat</span></td>
+                            <td><span class="status excellent">EXCELLENT</span></td>
+                            <td>Microsoft Office</td>
+                            <td><span class="status faible">MANUELLE</span></td>
+                            <td><span class="status faible">MANUELLES</span></td>
+                        </tr>
+                        <tr style="background: linear-gradient(135deg, #e8f5e8, #d4edda);">
+                            <td class="product-name"><strong>Solution Sur Mesure</strong></td>
+                            <td><span class="price gratuit">Coût développement</span></td>
+                            <td><span class="price gratuit">Coût maintenance</span></td>
+                            <td><span class="status gap">INTERFACE SIMPLE</span></td>
+                            <td><span class="status gap">MAXIMAL</span></td>
+                            <td>Open Source ou Propriétaire</td>
+                            <td><span class="status gap">MAÎTRISÉE</span></td>
+                            <td><span class="status gap">CONTRÔLÉES</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="recommendations" class="tab-content">
+            <div class="section">
+                <h2>💡 Pourquoi Développer une Solution Sur Mesure</h2>
+                
+                <div class="recommendation-box">
+                    <h3>🎯 JUSTIFICATIONS TECHNIQUES</h3>
+                    <p>Le développement d'une solution spécialisée présente des avantages uniques non couverts par l'existant</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>🚀 Avantages Techniques Uniques</h4>
+                        <ul>
+                            <li><strong>Spécialisation totale :</strong> Optimisé uniquement pour serres maraîchères plastique</li>
+                            <li><strong>Interface dédiée :</strong> Vocabulaire métier, workflows spécifiques</li>
+                            <li><strong>Algorithmes optimisés :</strong> Calculs rapides pour structures légères</li>
+                            <li><strong>Intégration métier :</strong> Bases données fabricants, catalogues matériaux</li>
+                            <li><strong>Évolutivité maîtrisée :</strong> Adaptations futures selon besoins réels</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>💼 Avantages Économiques</h4>
+                        <ul>
+                            <li><strong>Pas de licence externe :</strong> Économie 5-15k€/an par utilisateur</li>
+                            <li><strong>Maîtrise des coûts :</strong> Pas de dépendance éditeur externe</li>
+                            <li><strong>Adaptabilité :</strong> Modifications sans négociation commerciale</li>
+                            <li><strong>Formation minimale :</strong> Interface métier intuitive</li>
+                            <li><strong>Support interne :</strong> Équipe qui connaît les spécificités</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔧 Avantages Fonctionnels</h4>
+                        <ul>
+                            <li><strong>Workflow intégré :</strong> De la saisie à l'export note de calcul</li>
+                            <li><strong>Automatisations métier :</strong> Pré-dimensionnement, optimisation</li>
+                            <li><strong>Exports spécialisés :</strong> Formats constructeurs, nomenclatures</li>
+                            <li><strong>Intégration ERP :</strong> Liaison avec systèmes internes</li>
+                            <li><strong>Évolutions rapides :</strong> Nouvelles fonctions en quelques semaines</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>⚖️ Avantages Juridiques</h4>
+                        <ul>
+                            <li><strong>Responsabilité maîtrisée :</strong> Validation interne des algorithmes</li>
+                            <li><strong>Traçabilité :</strong> Historique complet des calculs</li>
+                            <li><strong>Conformité :</strong> Respect exact des pratiques internes</li>
+                            <li><strong>Indépendance :</strong> Pas de dépendance stratégique externe</li>
+                            <li><strong>Propriété intellectuelle :</strong> Savoir-faire capitalisé</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h3>⚠️ POINTS D'ATTENTION CRITIQUES</h3>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <h4>🔒 Responsabilité Juridique</h4>
+                            <ul>
+                                <li>Assurance RC professionnelle obligatoire</li>
+                                <li>Validation par ingénieurs qualifiés</li>
+                                <li>Tests sur structures réelles</li>
+                                <li>Documentation complète des algorithmes</li>
+                                <li>Procédures de validation formalisées</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h4>📋 Validation Technique</h4>
+                            <ul>
+                                <li>Comparaisons avec calculs manuels</li>
+                                <li>Benchmarks logiciels existants</li>
+                                <li>Tests sur cas d'école normatifs</li>
+                                <li>Validation par organisme agréé</li>
+                                <li>Retours d'expérience terrain</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h4>🔄 Maintenance Continue</h4>
+                            <ul>
+                                <li>Veille normative (évolutions NF EN 13031)</li>
+                                <li>Mises à jour réglementaires</li>
+                                <li>Évolutions données climatiques</li>
+                                <li>Support utilisateurs</li>
+                                <li>Corrections anomalies</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h4>👥 Ressources Requises</h4>
+                            <ul>
+                                <li>Ingénieur structure expérimenté</li>
+                                <li>Développeur Python/R confirmé</li>
+                                <li>Spécialiste normes européennes</li>
+                                <li>Expert climatologie/météorologie</li>
+                                <li>Testeur/validateur qualifié</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>🎯 Étapes Clés Recommandées</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <h4>📋 1. Analyse Préalable</h4>
+                            <p><em>Durée : Quelques semaines</em></p>
+                            <ul>
+                                <li>Audit des pratiques actuelles</li>
+                                <li>Identification des cas d'usage prioritaires</li>
+                                <li>Spécifications fonctionnelles détaillées</li>
+                                <li>Analyse de risques juridiques</li>
+                                <li>Planning et budget développement</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h4>🔬 2. Prototype MVP</h4>
+                            <p><em>Durée : Quelques mois</em></p>
+                            <ul>
+                                <li>Calculs de base NF EN 13031-1</li>
+                                <li>Interface simple saisie/résultats</li>
+                                <li>Export note de calcul basique</li>
+                                <li>Tests validation sur cas simples</li>
+                                <li>Retours utilisateurs internes</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h4>⚙️ 3. Version Pilote</h4>
+                            <p><em>Durée : Plusieurs mois</em></p>
+                            <ul>
+                                <li>Fonctionnalités avancées complètes</li>
+                                <li>Interface optimisée ergonomie</li>
+                                <li>Intégrations systèmes existants</li>
+                                <li>Tests terrain sur projets réels</li>
+                                <li>Documentation utilisateur</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h4>🚀 4. Déploiement</h4>
+                            <p><em>Durée : Déploiement progressif</em></p>
+                            <ul>
+                                <li>Formation équipes utilisatrices</li>
+                                <li>Procédures qualité finalisées</li>
+                                <li>Support utilisateur organisé</li>
+                                <li>Retour d'expérience capitalisé</li>
+                                <li>Évolutions futures planifiées</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="sources" class="tab-content">
+            <div class="section">
+                <h2>📚 Sources et Références Vérifiées</h2>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>🏛️ Sources Officielles Normes</h4>
+                        <ul>
+                            <li><a href="https://www.afnor.org/" class="link" target="_blank">AFNOR - Norme NF EN 13031-1</a></li>
+                            <li><a href="https://www.boutique.afnor.org/fr-fr/norme/nf-en-130311/serres-calcul-et-construction-partie-1-serres-de-production/fa189190/84935" class="link" target="_blank">NF EN 13031-1:2019 - Version officielle</a></li>
+                            <li><a href="https://www.cstb.fr/" class="link" target="_blank">CSTB - Centre Scientifique et Technique du Bâtiment</a></li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>💻 Éditeurs Logiciels Vérifiés</h4>
+                        <ul>
+                            <li><a href="https://www.tno.nl/en/sustainable/safe-sustainable-living-environment/greenhouse-horticulture/casta-greenhouse-design-programme/" class="link" target="_blank">TNO - CASTA Programme</a></li>
+                            <li><a href="https://www.hortivation.nl/en/casta/" class="link" target="_blank">Hortivation - Licensing CASTA</a></li>
+                            <li><a href="https://www.icab.fr/doc/icabforce/eurocode/en13031.htm" class="link" target="_blank">ICAB - Module EN 13031</a></li>
+                            <li><a href="https://www.hortinergy.com/fr/accueil/" class="link" target="_blank">Hortinergy - Agrithermic</a></li>
+                            <li><a href="https://www.autodesk.com/products/robot-structural-analysis/" class="link" target="_blank">Autodesk - ROBOT Structural</a></li>
+                            <li><a href="https://www.trimble.com/en/products/tekla/structures" class="link" target="_blank">Trimble - TEKLA Structures</a></li>
+                            <li><a href="https://www.scia.net/en" class="link" target="_blank">SCIA - Engineer</a></li>
+                            <li><a href="https://graitec.com/advance-design/" class="link" target="_blank">Graitec - Advance Design</a></li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🏗️ Constructeurs Serres Terrain</h4>
+                        <ul>
+                            <li><a href="https://richel-group.fr/produits/tunnels-et-bi-tunnels/" class="link" target="_blank">Richel Group - Tunnels maraîchers</a></li>
+                            <li><a href="https://www.serres-jrc.com/serres-maraichage/" class="link" target="_blank">Serres JRC - Serres maraîchères</a></li>
+                            <li><a href="https://www.cmf-groupe.com/cmf-cultures/serres-plastique/" class="link" target="_blank">CMF Cultures - Serres plastique</a></li>
+                            <li><a href="https://www.serresvaldeloire.com/serres-tunnel-professionnelles-fabricant/tunnels-professionnels/" class="link" target="_blank">Serres Val de Loire</a></li>
+                            <li><a href="https://serres-tonneau.com" class="link" target="_blank">Serres Tonneau</a></li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📊 Méthodologie d'Analyse</h4>
+                        <p><strong>Sources d'information :</strong></p>
+                        <ul>
+                            <li>Documentation technique officielle des éditeurs</li>
+                            <li>Sites web constructeurs serres français</li>
+                            <li>Retours d'expérience terrain (non quantifiés)</li>
+                            <li>Publications techniques sectorielles</li>
+                        </ul>
+                        <p><strong>Limites de l'analyse :</strong></p>
+                        <ul>
+                            <li>Tarifs estimatifs sans devis officiels</li>
+                            <li>Évaluations qualitatives basées sur documentation</li>
+                            <li>Pas d'tests terrain réalisés</li>
+                        </ul>
+                        <p><em>Analyse réalisée : Juin 2025<br>
+                        Mise à jour recommandée : Annuelle</em></p>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h3>⚠️ AVERTISSEMENT SOURCES MARCHÉ</h3>
+                    <p><strong>Données marché non disponibles :</strong> Les chiffres sur le marché français des serres maraîchères 
+                    (nombre d'exploitations, volumes, etc.) nécessiteraient une étude de marché spécialisée auprès d'organismes 
+                    comme FranceAgriMer, FNSEA, ou cabinets d'études sectoriels. Les estimations présentées précédemment 
+                    étaient spéculatives et ont été retirées.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation entre onglets
+        function showTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Filtrage du tableau
+        function filterTable() {
+            const targetFilter = document.getElementById('targetFilter').value;
+            const priceFilter = document.getElementById('priceFilter').value;
+            const rows = document.querySelectorAll('#comparisonTable tbody tr');
+            
+            rows.forEach(row => {
+                const target = row.dataset.target;
+                const price = row.dataset.price;
+                
+                let show = true;
+                
+                if (targetFilter !== 'all' && target !== targetFilter) show = false;
+                if (priceFilter !== 'all' && price !== priceFilter) show = false;
+                
+                row.style.display = show ? '' : 'none';
+            });
+        }
+
+        // Animation au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            const rows = document.querySelectorAll('.comparison-table tbody tr');
+            rows.forEach((row, index) => {
+                setTimeout(() => {
+                    row.style.opacity = '0';
+                    row.style.transform = 'translateY(20px)';
+                    row.style.transition = 'all 0.5s ease';
+                    setTimeout(() => {
+                        row.style.opacity = '1';
+                        row.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 100);
+            });
+        });
+
+        // Responsive design
+        function checkMobile() {
+            if (window.innerWidth < 768) {
+                document.querySelectorAll('.comparison-table th, .comparison-table td').forEach(cell => {
+                    cell.style.fontSize = '0.7rem';
+                    cell.style.padding = '6px 4px';
+                });
+            }
+        }
+
+        window.addEventListener('resize', checkMobile);
+        checkMobile();
+    </script>
+</body>
+</html>
